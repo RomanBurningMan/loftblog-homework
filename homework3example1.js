@@ -1,9 +1,10 @@
 function isAllTrue(source, filterFn) {
+	var numb;
 	if (source[0] === undefined) {
 		throw new Error('Массив совсем пустой!(((');
 	} else {
 		for (var i=0; i<source.length; i++){
-			var numb = source[i];
+			numb = source[i];
 			if (filterFn(numb) === false) {
 				return false;
 			}
