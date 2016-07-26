@@ -1,0 +1,102 @@
+@font-face{
+	font-family: 'FiraSans-light';
+	src: url('fonts/FiraSans-Light.ttf');
+	font-weight: lighter;
+}
+
+@font-face{
+	font-family: 'FiraSans-medium';
+	src: url('fonts/FiraSans-Medium.ttf');
+	font-weight: medium;
+}
+
+*{
+	padding: 0;
+	margin: 0;
+}
+
+body{
+	font: 100%/1.5em 'FiraSans-light', Arial, sans-serif;
+	background: #ddb;
+	overflow: auto;
+	padding-top: 10%;
+	padding-left: 5%;
+	padding-right: 5%;
+	min-width: 320px;
+}
+
+.row {
+
+	width: 50%;
+	margin: auto;
+	box-sizing: border-box;
+}
+
+.row:before, .row:after{
+	content: '';
+	display: table;
+	clear: both;
+}
+
+.cols{
+	float: left;
+	width: 100%;
+	box-sizing: border-box;
+	border-radius: 1.5em;
+}
+
+li{
+	list-style: none;
+	font-size: 0.94em;
+	line-height: 1.625em;
+}
+
+header{
+	width: 100%;
+	height: 3em;
+	background: url('img/logo.png') 50% 50% no-repeat;
+	margin-top: 1em;
+	margin-bottom: 1em; 
+}
+
+.main-item{
+	font-family: 'FiraSans-medium';
+	margin-bottom: 0.5em;
+	background-color: #e7e7e7;
+}
+
+.main-item a{
+	display: block;
+	text-decoration: none;
+	color: #4f4f4f;
+}
+
+.main-item  > a{
+	padding: 0.75em 3em 0.75em 1.375em;
+}
+
+.main-item:nth-child(odd) > a{
+	background-color: #696666;
+	color: #fff;
+}
+
+.arrows {
+	background-image: url('img/arrow-down.png');
+	background-repeat: no-repeat;
+	background-position: 95% 50%;
+}
+
+.sub-menu{
+	display: none;
+	padding: 0.3em 3em 0.8em 1.375em;	
+}
+
+.sub-menu a{
+	margin-top: 0.2em;
+	margin-bottom: 0.2em;
+}
+
+.container-item .main-item .active {
+	background-image: url('img/arrow-up.png');
+	background-color: #ff8663;
+}
