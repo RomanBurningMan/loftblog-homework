@@ -17,31 +17,29 @@ function ajax(url){
 }
 
 ajax(url1).then((text) => {
-	var parentDiv = document.getElementById('container'),
-		childDiv = parentDiv.getElementsByTagName('div');
-	
-	searchField.addEventListener('keydown', () => {
-		for ( iter of childDiv ){
-			parentDiv.removeChild(iter);	
-		}
-	});
-	
+	for (let obj of text) {
+		let newLi = document.createElement('li'),
+			nameCity = obj.name;
+			
+		newLi.innerText = nameCity;
+		newLi.style.display = 'none';
+		result.appendChild(newLi);
+	}
+
 	searchField.addEventListener('keyup', () => {
-		var emptyArr = [],
-			innerText = searchField.value;
-		for( {name} of text ){
-			let index = name.indexOf(innerText);
-			if (index > 0){
-				emptyArr.push(name);	
+		let valueInput = searchField.value.toLowerCase(),
+			elemItem = result.children;
+
+		for (var elem of elemItem){
+			let textItem = elem.innerText.toLowerCase(),
+				indexItem = textItem.indexOf(valueInput);
+			
+			if ( indexItem < 0 ){
+				elem.style.display = 'none';
+			} else {
+				elem.style.display = 'block';
 			}
 		}
-		
-		for ( itemArr of emptyArr){
-			var	newDiv = document.createElement('div');
-			newDiv.innerText = itemArr;
-			parentDiv.appendChild(newDiv);	
-		}
-		
-		
-	});
-}, () => {console.log('Error)')});
+
+	})
+}, () => {new Error('Не пришел ответ с сервера!')});

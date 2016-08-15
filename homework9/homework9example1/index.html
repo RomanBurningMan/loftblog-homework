@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Name site</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <form>
+      <input type="text" name="search" id="searchCity">
+    </form>
+    <div id="result"></div>
+  <script src="main11.js"></script>
+  <script type="text/x-handlebars-template" id="templateList">
+    <ul id="ulList">
+      {{#each list}}
+      <li>{{name}}</li>
+      {{/each}}
+    </ul>
+  </script>
+  </body>
+</html>
