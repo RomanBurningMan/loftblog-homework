@@ -66,10 +66,5 @@ Sqrt.prototype.mul = function(){
 
 var myCalculator = new Sqrt(100);
 
-console.log(myCalculator.sum(1,2,3));
-console.log(myCalculator.dif(1,2,3));
-console.log(myCalculator.div(1,2,3));
-console.log(myCalculator.mul(1,2,3));
-
 module.export = myCalculator;
 
