@@ -19,6 +19,10 @@ body {
 	background-color: #ff8663;
 }
 
+.glyphicon-remove {
+	cursor: pointer;
+}
+
 .search {
 	padding-top: 10px;
 	padding-bottom: 10px;
@@ -57,4 +61,41 @@ body {
 	border: none;
 	border-radius: 20px;
 
+}
+
+.first-search-collumn {
+	background-image: url('img/musica-searcher.png');
+	background-repeat: no-repeat;
+	background-position: 8px 6px;
+}
+
+.header-friends-list {
+	font-weight: bold;
+	border-bottom: 1px solid #f0f0f0;
+	padding-bottom: 10px;
+}
+
+.all-friends-block, .choosed-friends-block {
+	padding-top: 15px;
+}
+
+.all-friends-block {
+	padding-left: 0;
+	border-right: 1px solid #f0f0f0;
+}
+
+div[class^="friends-list-"] {
+	overflow: auto;
+	height: 342px;
+}
+
+.container-save {
+	padding: 10px;
+	background-color: #f0f0f0;
+}
+
+.btn-warning {
+	background-color: #ff8663;
+	border-radius: 10px;
+	border: none;
 }
