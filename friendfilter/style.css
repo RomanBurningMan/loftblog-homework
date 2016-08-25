@@ -99,3 +99,43 @@ div[class^="friends-list-"] {
 	border-radius: 10px;
 	border: none;
 }
+
+#ulList {
+	padding: 0;
+}
+
+.all-friends-block .frindInfo {
+	display: block;
+}
+
+.choosed-friends-block .frindInfo {
+	display: none;
+}
+
+.frindInfo {
+	border-bottom: 1px solid #f0f0f0;
+	height: 57px;
+	overflow: hidden;
+}
+
+.frindInfo img {
+	margin: 3px 10px 0 0;
+}
+
+.frindInfo:hover {
+	background-color: #f0f0f0;
+}
+
+.name {
+	font-weight: bold;
+	line-height: 57px;
+}
+
+.add-delete {
+	line-height: 57px;
+	color: #9e9e9e;	
+}
+
+.friends-list-first .add-delete {
+	transform: rotate(45deg);
+}

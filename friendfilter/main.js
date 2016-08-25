@@ -24,18 +24,41 @@ new Promise(resolve => {
       if (response.error) {
         reject(new Error(response.error.error_msg)); 
       } else {
-        console.log(response.response);
+        let source = document.getElementById('templateFriendsList').innerHTML;
+        let templateFn = Handlebars.compile(source);
+        let template = templateFn({list: response.response});
 
+        mainList.innerHTML = template;
+        // choosedList.innerHTML = template;
         resolve();
       } 
     })
-    // let source = document.getElementById('templateFriendsList').innerHTML;
-    // let templateFn = Handlebars.compile(source);
-    // let template = templateFn({list: });
-
-    // mainList.innerHTML = template;
-    // choosedList.innerHTML = template;
-
+  })
+}).then(() => {
+  return new Promise( resolve => {
     
+    function searchFunc(parentNode, inputNode) {
+      let friendsList = parentNode.children[0].children, 
+          inputValue = inputNode.value.toLowerCase();  
+        
+      for(let propLi of friendsList){
+        let nameFriend = propLi.querySelector('[data-search="searchName"]'),
+          innerLiText = propLi.innerText.toLowerCase(),
+          indexFriend = innerLiText.indexOf(inputValue);
+        if (indexFriend < 0){
+          propLi.style.display = 'none';
+        } else {
+          propLi.style.display = 'block';
+        }
+      }
+    };  
+    
+    mainInput.addEventListener('keyup', e => {
+      searchFunc(mainList, e.target);
+    });
+
+    choosedInput.addEventListener('keyup', e => {
+      searchFunc(choosedList, e.target);
+    });
   })
 });
