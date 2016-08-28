@@ -40,7 +40,7 @@
           <div class="choosed-friends-block col-lg-6 col-md-6 col-sm-6 col-xs-6" data-attr="list-container">
             <div class="header-friends-list">Друзья в списке</div>
             <div class="friends-list-second" id="choosedList">
-              <ul id="ulList2" class="list-unstyled col-lg-12 col-md-12 col-sm-12 col-xs-12" data-type-list="container-list">
+              <ul id="ulList2" class="list-unstyled col-lg-12 col-md-12 col-sm-12 col-xs-12" data-type-list="append-list">
               </ul>
             </div>
           </div>
@@ -52,7 +52,7 @@
     </div>
     <script src="main.js"></script>
     <script type="text/x-handlebars-template" id="templateFriendsList">
-      <ul id="ulList" class="list-unstyled col-lg-12 col-md-12 col-sm-12 col-xs-12" data-type-list="container-list">
+      <ul id="ulList" class="list-unstyled col-lg-12 col-md-12 col-sm-12 col-xs-12" data-type-list="append-list">
         {{#each list}}
         <li class="frindInfo col-lg-12 col-md-12 col-sm-12 col-xs-12" data-type="containerFriends">
           <img src="{{photo_50}}" alt="user photo" class="img-circle pull-left">

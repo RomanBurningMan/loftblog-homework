@@ -37,6 +37,7 @@ new Promise(resolve => {
 }).then(() => {
   return new Promise( resolve => {
     let activeElem, 
+      parentNodeDiv,
       parentElement,
       offsetX = 0,
       offsetY = 0;
@@ -66,33 +67,40 @@ new Promise(resolve => {
     });
 
     var mDown = function(e){
-      let choosedElement = e.target.closest('[data-type-list="container-list"]');
+      let choosedElement = e.target.closest('[data-type-list="append-list"]');
       if (choosedElement) {
-        parentElement = e.target.closest('[data-attr="list-container"]');
+        parentNodeDiv = e.target.closest('[data-attr="list-container"]');
+        parentElement = e.target.closest('[data-type-list="append-list"]');
         activeElem = e.target.closest('[data-type="containerFriends"]');
         offsetX = e.offsetX;
         offsetY = e.offsetY;
         activeElem.style.position = 'absolute';
+        activeElem.style.width = 30 + '%';
+        activeElem.style.zIndex = -10;
       }
     }
 
     var mUp = function(e){
       let twoBlocksParent = e.target.closest('#friendsContainer');
       let checkParent = e.target.closest('[data-attr="list-container"]');
-      choosedElement.style.position = 'static';
-
-      if (checkParent !== parentElement && twoBlocksParent) {
-        let parentForAppend = checkParent.querySelector('[data-type-list="container-list"]');
-        let removeElem = ulList.removeChild(choosedElement);
-        ulList.appendChild(removeElem);
+      activeElem.style.position = 'static';
+      console.log(e.target);
+      if (checkParent !== parentNodeDiv && twoBlocksParent) {
+        let parentForAppend = checkParent.querySelector('[data-type-list="append-list"]');
+        let removeElem = parentElement.removeChild(activeElem);
+        parentForAppend.appendChild(removeElem);
       }
-         
-      parentElement = null;
+      activeElem.style.width = 100 + '%';  
+      activeElem.style.zIndex = 10;
+      parentNodeDiv = null;
       activeElem = null;
+      parentElement = null;
     }
 
     var mMove = function(e){
+      let moveY = activeElem.style.top
       activeElem.style.top = (e.clientY - offsetY) + 'px';
+      let moveX =
       activeElem.style.left = (e.clientX - offsetX) + 'px';
     }
 

@@ -104,11 +104,14 @@ div[class^="friends-list-"] {
 	padding: 0;
 }
 
-#ulList, 
+#ulList,
+#ulList2, 
 #mainList, 
 .all-friends-block, 
 .friends-list, 
-.main-block {
+.main-block,
+#choosedList,
+.choosed-friends-block {
 	position: static;
 }
 
@@ -127,6 +130,10 @@ div[class^="friends-list-"] {
 }
 
 .frindInfo:hover {
+	background-color: #f0f0f0;
+}
+
+.frindInfo:active {
 	background-color: #f0f0f0;
 }
 
