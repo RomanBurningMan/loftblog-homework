@@ -32,14 +32,17 @@
             <input type="text" class="second-search-collumn col-lg-6 col-md-6 col-sm-6 col-xs-6" placeholder="Название" id="choosedInput">
           </div>
         </div>
-        <div class="friends-list col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <div class="all-friends-block col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <div class="friends-list col-lg-12 col-md-12 col-sm-12 col-xs-12" id="friendsContainer">
+          <div class="all-friends-block col-lg-6 col-md-6 col-sm-6 col-xs-6" data-attr="list-container">
             <div class="header-friends-list">Ваши друзья</div>
             <div class="friends-list-first" id="mainList"></div>
           </div>
-          <div class="choosed-friends-block col-lg-6 col-md-6 col-sm-6 col-xs-6">
+          <div class="choosed-friends-block col-lg-6 col-md-6 col-sm-6 col-xs-6" data-attr="list-container">
             <div class="header-friends-list">Друзья в списке</div>
-            <div class="friends-list-second" id="choosedList"></div>
+            <div class="friends-list-second" id="choosedList">
+              <ul id="ulList2" class="list-unstyled col-lg-12 col-md-12 col-sm-12 col-xs-12" data-type-list="container-list">
+              </ul>
+            </div>
           </div>
         </div>
         <div class="container-save col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -49,9 +52,9 @@
     </div>
     <script src="main.js"></script>
     <script type="text/x-handlebars-template" id="templateFriendsList">
-      <ul id="ulList" class="list-unstyled col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <ul id="ulList" class="list-unstyled col-lg-12 col-md-12 col-sm-12 col-xs-12" data-type-list="container-list">
         {{#each list}}
-        <li class="frindInfo col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <li class="frindInfo col-lg-12 col-md-12 col-sm-12 col-xs-12" data-type="containerFriends">
           <img src="{{photo_50}}" alt="user photo" class="img-circle pull-left">
           <span class="pull-left name" data-search="searchName">{{first_name}} {{last_name}}</span>
           <span class="pull-right glyphicon glyphicon-remove add-delete"></span>

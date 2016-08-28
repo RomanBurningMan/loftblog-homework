@@ -104,12 +104,16 @@ div[class^="friends-list-"] {
 	padding: 0;
 }
 
-.all-friends-block .frindInfo {
-	display: block;
+#ulList, 
+#mainList, 
+.all-friends-block, 
+.friends-list, 
+.main-block {
+	position: static;
 }
 
-.choosed-friends-block .frindInfo {
-	display: none;
+.all-friends-block .frindInfo {
+	display: block;
 }
 
 .frindInfo {

@@ -36,7 +36,11 @@ new Promise(resolve => {
   })
 }).then(() => {
   return new Promise( resolve => {
-    
+    let activeElem, 
+      parentElement,
+      offsetX = 0,
+      offsetY = 0;
+
     function searchFunc(parentNode, inputNode) {
       let friendsList = parentNode.children[0].children, 
           inputValue = inputNode.value.toLowerCase();  
@@ -60,5 +64,42 @@ new Promise(resolve => {
     choosedInput.addEventListener('keyup', e => {
       searchFunc(choosedList, e.target);
     });
+
+    var mDown = function(e){
+      let choosedElement = e.target.closest('[data-type-list="container-list"]');
+      if (choosedElement) {
+        parentElement = e.target.closest('[data-attr="list-container"]');
+        activeElem = e.target.closest('[data-type="containerFriends"]');
+        offsetX = e.offsetX;
+        offsetY = e.offsetY;
+        activeElem.style.position = 'absolute';
+      }
+    }
+
+    var mUp = function(e){
+      let twoBlocksParent = e.target.closest('#friendsContainer');
+      let checkParent = e.target.closest('[data-attr="list-container"]');
+      choosedElement.style.position = 'static';
+
+      if (checkParent !== parentElement && twoBlocksParent) {
+        let parentForAppend = checkParent.querySelector('[data-type-list="container-list"]');
+        let removeElem = ulList.removeChild(choosedElement);
+        ulList.appendChild(removeElem);
+      }
+         
+      parentElement = null;
+      activeElem = null;
+    }
+
+    var mMove = function(e){
+      activeElem.style.top = (e.clientY - offsetY) + 'px';
+      activeElem.style.left = (e.clientX - offsetX) + 'px';
+    }
+
+    
+    document.addEventListener('mousemove', mMove);
+    friendsContainer.addEventListener('mousedown', mDown);
+    document.addEventListener('mouseup', mUp);
+
   })
 });
