@@ -38,7 +38,7 @@ new Promise(resolve => {
   return new Promise( resolve => {
     let activeElem, 
       parentNodeDiv,
-      parentElement,
+      choosedElement,
       offsetX = 0,
       offsetY = 0;
 
@@ -66,35 +66,54 @@ new Promise(resolve => {
       searchFunc(choosedList, e.target);
     });
 
-    var mDown = function(e){
-      let choosedElement = e.target.closest('[data-type-list="append-list"]');
-      if (choosedElement) {
-        parentNodeDiv = e.target.closest('[data-attr="list-container"]');
-        parentElement = e.target.closest('[data-type-list="append-list"]');
-        activeElem = e.target.closest('[data-type="containerFriends"]');
-        offsetX = e.offsetX;
-        offsetY = e.offsetY;
-        activeElem.style.position = 'absolute';
-        activeElem.style.width = 30 + '%';
-        activeElem.style.zIndex = -10;
+    function pasteBlock(e) {
+      let twoBlocksParent = e.target.closest('#friendsContainer');
+      let checkParent = e.target.closest('[data-attr="list-container"]');
+
+      if (checkParent !== parentNodeDiv && twoBlocksParent) {
+        let parentForAppend = checkParent.querySelector('[data-type-list="append-list"]');
+        let removeElem = choosedElement.removeChild(activeElem);
+        parentForAppend.appendChild(removeElem);
       }
     }
 
+    var mDown = function(e){
+      choosedElement = e.target.closest('[data-type-list="append-list"]'); // ul в который складуем все liшки
+      parentNodeDiv = e.target.closest('[data-attr="list-container"]'); // контеинер в котором текущий элемент
+      activeElem = e.target.closest('[data-type="containerFriends"]'); // карточка друга
+      
+      if (choosedElement) {
+        let spanAdd = activeElem.querySelector('.add-delete');
+        if (e.target === spanAdd) {
+          let checkUlContainer = document.querySelectorAll('[data-type-list="append-list"]');
+          for ( let prop of checkUlContainer) {
+            if (prop !== choosedElement) {
+              let removeElem = choosedElement.removeChild(activeElem);
+              prop.appendChild(removeElem);
+            }
+          }
+        } else if (e.target !== spanAdd){
+          offsetX = e.offsetX;
+          offsetY = e.offsetY;
+          activeElem.style.position = 'absolute';
+          activeElem.style.width = 30 + '%';
+          activeElem.style.zIndex = -10;
+        }
+      } 
+    }
+
     var mUp = function(e){
-      let twoBlocksParent = e.target.closest('#friendsContainer');
-      let checkParent = e.target.closest('[data-attr="list-container"]');
+      
       activeElem.style.position = 'static';
-      console.log(e.target);
-      if (checkParent !== parentNodeDiv && twoBlocksParent) {
-        let parentForAppend = checkParent.querySelector('[data-type-list="append-list"]');
-        let removeElem = parentElement.removeChild(activeElem);
-        parentForAppend.appendChild(removeElem);
-      }
       activeElem.style.width = 100 + '%';  
       activeElem.style.zIndex = 10;
-      parentNodeDiv = null;
+      pasteBlock(e);
+      
+      
+      // parentNodeDiv = null;
       activeElem = null;
-      parentElement = null;
+      // parentElement = null;
+      // choosedElement = null;
     }
 
     var mMove = function(e){
