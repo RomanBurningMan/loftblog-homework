@@ -173,11 +173,11 @@ new Promise(resolve => {
     saveBtn.addEventListener('mousedown', saveFriends);
 
     function logoutFrindslist() {
-      VK.Auth.logout( function() {
-        if (confirm('Вы уверенны, что хотите выйти?')) {
-          location.reload();    
-        }
-      })
+      if (confirm('Вы уверенны, что хотите выйти?')) {
+        VK.Auth.logout( function() {
+          location.reload(); 
+        }) 
+      }
     }
 
     closeWindow.addEventListener('mousedown', logoutFrindslist);
