@@ -26,10 +26,26 @@ new Promise(resolve => {
       } else {
         let source = document.getElementById('templateFriendsList').innerHTML;
         let templateFn = Handlebars.compile(source);
-        let template = templateFn({list: response.response});
+        let template;
 
-        mainList.innerHTML = template;
-        // choosedList.innerHTML = template;
+        if (localStorage.leftFriendsBlock || localStorage.rightFriendsBlock) {
+          if (localStorage.leftFriendsBlock) {
+            let parseData = JSON.parse(localStorage.leftFriendsBlock);
+            template = templateFn({list: parseData});
+            mainList.innerHTML = template;
+          } 
+          if (localStorage.rightFriendsBlock) {
+            let parseData = JSON.parse(localStorage.rightFriendsBlock);
+            template = templateFn({list: parseData});
+            choosedList.innerHTML = template;
+            let ulChoosed = choosedList.children[0];
+            ulChoosed.setAttribute('id', 'ulList2');
+            console.log(ulChoosed);
+          }
+        } else {
+          let template = templateFn({list: response.response});
+          mainList.innerHTML = template;
+        }
         resolve();
       } 
     })
@@ -103,23 +119,16 @@ new Promise(resolve => {
     }
 
     var mUp = function(e){
-      
       activeElem.style.position = 'static';
       activeElem.style.width = 100 + '%';  
       activeElem.style.zIndex = 10;
       pasteBlock(e);
-      
-      
-      // parentNodeDiv = null;
+        
       activeElem = null;
-      // parentElement = null;
-      // choosedElement = null;
     }
 
     var mMove = function(e){
-      let moveY = activeElem.style.top
       activeElem.style.top = (e.clientY - offsetY) + 'px';
-      let moveX =
       activeElem.style.left = (e.clientX - offsetX) + 'px';
     }
 
@@ -128,5 +137,49 @@ new Promise(resolve => {
     friendsContainer.addEventListener('mousedown', mDown);
     document.addEventListener('mouseup', mUp);
 
+    function saveFriends(e) {
+      let saveLeftBlock = [],
+        saveRightBlock = [],
+        containerUlLeft = document.getElementById('ulList'),
+        containerUlRight = document.getElementById('ulList2');
+
+      function localStorageFunc(parentNode, arrForAppend) {  
+        let arrChild = parentNode.children;
+        for (let prop of arrChild) {
+          let newObj = {},
+          photoContainer = prop.querySelector('img'),
+          urlPhoto = photoContainer.getAttribute('src'),
+          nameForParse = prop.querySelector('[data-search="searchName"]').innerText.split(' '),
+          firstName = nameForParse[0],
+          lastName = nameForParse[1];
+          
+          newObj.photo_50 = urlPhoto;
+          newObj.first_name = firstName;
+          newObj.last_name = lastName;
+          
+          arrForAppend.push(newObj);
+        }
+        if (parentNode === ulList) {
+          localStorage.leftFriendsBlock = JSON.stringify(arrForAppend);
+        } else if (parentNode === ulList2) {
+          localStorage.rightFriendsBlock = JSON.stringify(arrForAppend);
+        }
+      }
+
+      localStorageFunc(containerUlLeft, saveLeftBlock);
+      localStorageFunc(containerUlRight, saveRightBlock);
+    }
+
+    saveBtn.addEventListener('mousedown', saveFriends);
+
+    function logoutFrindslist() {
+      VK.Auth.logout( function() {
+        if (confirm('Вы уверенны, что хотите выйти?')) {
+          location.reload();    
+        }
+      })
+    }
+
+    closeWindow.addEventListener('mousedown', logoutFrindslist);
   })
 });
