@@ -7,12 +7,17 @@
  */
 $str = "str int bool null0";
 echo "$str<br>";
+
 $arr = explode(" ", $str);
-$newArr = array();
-$i = count($arr) - 1;
+$startLength = count($arr);
+$i = $startLength - 1;
+
 while ($i >= 0) {
-    $newArr[] = $arr[$i];
+    $arr[] = $arr[$i];
     $i--;
 }
-$newStr = implode('|', $newArr);
+
+array_splice($arr, 0, $startLength);
+$newStr = implode('|', $arr);
+
 echo $newStr;
