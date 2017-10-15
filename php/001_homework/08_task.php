@@ -9,15 +9,17 @@ $str = "str int bool null0";
 echo "$str<br>";
 
 $arr = explode(" ", $str);
-$startLength = count($arr);
-$i = $startLength - 1;
+$length = count($arr);
+$additionalVar = null;
+$i = 0;
 
-while ($i >= 0) {
-    $arr[] = $arr[$i];
-    $i--;
+while ($i <= $length/2 - 1) {
+    $additionalVar = $arr[$i];
+    $arr[$i] = $arr[$length - 1 - $i];
+    $arr[$length - 1 - $i] = $additionalVar;
+    $i++;
 }
 
-array_splice($arr, 0, $startLength);
 $newStr = implode('|', $arr);
 
 echo $newStr;
