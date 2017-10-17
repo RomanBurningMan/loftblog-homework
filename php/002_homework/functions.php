@@ -174,3 +174,61 @@ function task5func2($str) {
     }
     return true;
 }
+
+function task6() {
+    $currentDate = date('d.m.Y H:i');
+    echo "<p>Текущая дата: $currentDate</p>";
+    $secondDate = mktime(00,00,00,02,24,2016);
+    echo "<p>Время (24.02.2016 00:00:00) в unixtime: $secondDate.</p>";
+    return true;
+}
+
+function task7() {
+    echo str_replace('К','','Карл у Клары украл Кораллы').'<br>';
+    echo str_replace('Две', 'Три', 'Две бутылки лимонада');
+    return true;
+}
+
+function task8($str) {
+    preg_match('/^RX packets:[0-9]* /u', $str, $matches);
+    $checkSmile = preg_match('/:\)/u', $str);
+    $arr = explode(':', $matches[0]);
+    $numPackets = intval($arr[1]);
+    if ($checkSmile) {
+        echo task8part2();
+    } elseif ($numPackets > 1000) {
+        echo "<p>Сеть есть!</p>";
+    }
+    return true;
+}
+
+function task8part2() {
+    return "<pre>
+              OOOOOOOOOOO
+         OOOOOOOOOOOOOOOOOOO
+      OOOOOO  OOOOOOOOO  OOOOOO
+    OOOOOO      OOOOO      OOOOOO
+  OOOOOOOO  #   OOOOO  #   OOOOOOOO
+ OOOOOOOOOO    OOOOOOO    OOOOOOOOOO
+OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+OOOO  OOOOOOOOOOOOOOOOOOOOOOOOO  OOOO
+ OOOO  OOOOOOOOOOOOOOOOOOOOOOO  OOOO
+  OOOO   OOOOOOOOOOOOOOOOOOOO  OOOO
+    OOOOO   OOOOOOOOOOOOOOO   OOOO
+      OOOOOO   OOOOOOOOO   OOOOOO
+         OOOOOO         OOOOOO
+             OOOOOOOOOOOO
+</pre>";
+}
+
+function task9() {
+    $innerText = file_get_contents('./greeting.txt');
+    echo $innerText;
+    return true;
+}
+
+function task10() {
+    file_put_contents('./anothertest.txt', 'Hello again!');
+    return true;
+}

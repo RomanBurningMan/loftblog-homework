@@ -16,5 +16,14 @@ $numArr = array(1,2,3);
 
 //task4(10,5);
 
-//echo task5('Myny m');
-task5func2('mynU   munyM');
+//task5func2('mynU   munyM');
+
+//task6();
+
+//task7();
+
+//task8('RX packets:950381 errors:0 dropped:0 overruns:0 frame:0.');
+
+//task9();
+
+//task10();
