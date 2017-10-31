@@ -5,7 +5,7 @@
  * Date: 21.10.2017
  * Time: 16:05
  */
-function task1 ($url)
+function task1($url)
 {
     $xml = simplexml_load_file($url);
     $items = $xml->Items->children();
@@ -57,4 +57,48 @@ function task1 ($url)
     }
     echo "</table>";
     return $xml;
+}
+
+function task2($arr) {
+    function makeJson($arr, $secondFile='') {
+        $json = json_encode($arr);
+        $open = fopen('./output'.$secondFile.'.json','w');
+        fwrite($open, $json);
+        fclose($open);
+        return $arr;
+    }
+
+    function compareJson($arr1, $arr2) {
+        foreach ($arr1 as $key => $value) {
+            $result = array_key_exists($key, $arr2);
+            if (!$result) {
+                throw new Exception("Second file don't exist value: '$key'.");
+            } elseif (is_array($value)) {
+                if (is_array($arr2[$key])) {
+                    compareJson($arr1[$key], $arr2[$key]);
+                } else {
+                    throw new Exception("Second file don't exist array in key: '$key'");
+                }
+            } elseif ($arr2[$key] != $value) {
+                throw new Exception("Second file has different value - '$arr2[$key]' for key '$key'.");
+            }
+        }
+        return true;
+    }
+
+    if (rand(0,1)) {
+//        $arr["country for import"][4] = "Romania";
+        makeJson($arr, '2');
+        $decodeFile1 = json_decode(file('./output.json')[0], true);
+        $decodeFile2 = json_decode(file('./output2.json')[0], true);
+        try {
+            compareJson($decodeFile1, $decodeFile2);
+            echo "<p>Files are the same!</p>";
+        } catch (Exception $e) {
+            echo $e->getMessage()."<br>";
+        }
+    } else {
+        makeJson($arr);
+        echo "<p>Create one json file!</p>";
+    }
 }
