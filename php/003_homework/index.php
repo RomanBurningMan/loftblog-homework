@@ -7,7 +7,7 @@
  */
 require_once 'function.php';
 
-task1('data.xml');
+//task1('data.xml');
 
 $goodsItem = array(
     "item-name" => "soap",
@@ -17,4 +17,6 @@ $goodsItem = array(
     "country for import" => array("Argentina","Peru","Mexico","Brazil","France")
 );
 
-task2($goodsItem);
+//task2($goodsItem);
+
+//task3();

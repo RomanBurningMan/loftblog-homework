@@ -102,3 +102,28 @@ function task2($arr) {
         echo "<p>Create one json file!</p>";
     }
 }
+
+function task3() {
+    $numArr = array();
+    $i=0;
+    while ($i < 50) {
+        $numArr[] = rand(1, 100);
+        $i++;
+    }
+
+    $openFile = fopen('nums.csv','w');
+    fputcsv($openFile, $numArr);
+    fclose($openFile);
+
+    $readFile = fopen('nums.csv','r');
+    $data = fgetcsv($readFile);
+    $summ = 0;
+    foreach ($data as $num) {
+        $summ += $num;
+    }
+    fclose($readFile);
+
+    echo "<p>$summ</p>";
+
+    return $summ;
+}
