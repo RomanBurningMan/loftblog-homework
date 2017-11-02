@@ -127,3 +127,29 @@ function task3() {
 
     return $summ;
 }
+
+function task4() {
+    $url = "https://en.wikipedia.org/w/api.php?action=query&titles=Main%20Page&prop=revisions&rvprop=content&format=json";
+
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    $result = json_decode(curl_exec($curl),1);
+    curl_close($curl);
+
+    function findValue($arr, $keyName) {
+        foreach ($arr as $key => $value) {
+            if (is_array($value)) {
+                findValue($value, $keyName);
+            } elseif ($key == $keyName) {
+                echo $arr[$key]."<br>";
+                break;
+            }
+        }
+    }
+
+    findValue($result,'pageid');
+    findValue($result,'title');
+
+    return true;
+}
