@@ -1,0 +1,1 @@
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DELECTC * from catalog' at line 1SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo failed: ���� ���� ����������. 
