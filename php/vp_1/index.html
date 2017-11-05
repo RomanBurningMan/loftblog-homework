@@ -34,7 +34,7 @@
                   </ul>
                 </nav>
               </div>
-              <div class="header__links"><a class="order-link btn" href="./submit_form.php">Заказать</a><a class="hamburger-menu-link" href="">
+              <div class="header__links"><a class="order-link btn" href="#order-form">Заказать</a><a class="hamburger-menu-link" href="">
                   <div class="hamburger-menu-link__bars"></div></a></div>
             </header>
             <div class="hero__container">
@@ -122,7 +122,7 @@
                       <div class="burgers-slider__price">
                         <div class="burgers-slider__price-amount">500</div>
                         <div class="burgers-slider__price-measure">рублей</div>
-                      </div><a class="burgers-slider__buy btn" href="./submit_form.php">Заказать</a>
+                      </div><a class="burgers-slider__buy btn" href="#order-form">Заказать</a>
                     </div>
                   </div>
                 </li>
@@ -143,7 +143,7 @@
                       <div class="burgers-slider__price">
                         <div class="burgers-slider__price-amount">500</div>
                         <div class="burgers-slider__price-measure">рублей</div>
-                      </div><a class="burgers-slider__buy btn" href="./submit_form.php">Заказать</a>
+                      </div><a class="burgers-slider__buy btn" href="#order-form">Заказать</a>
                     </div>
                   </div>
                 </li>
@@ -164,7 +164,7 @@
                       <div class="burgers-slider__price">
                         <div class="burgers-slider__price-amount">500</div>
                         <div class="burgers-slider__price-measure">рублей</div>
-                      </div><a class="burgers-slider__buy btn" href="./submit_form.php">Заказать</a>
+                      </div><a class="burgers-slider__buy btn" href="#order-form">Заказать</a>
                     </div>
                   </div>
                 </li>
@@ -185,7 +185,7 @@
                       <div class="burgers-slider__price">
                         <div class="burgers-slider__price-amount">500</div>
                         <div class="burgers-slider__price-measure">рублей</div>
-                      </div><a class="burgers-slider__buy btn" href="./submit_form.php">Заказать</a>
+                      </div><a class="burgers-slider__buy btn" href="#order-form">Заказать</a>
                     </div>
                   </div>
                 </li>
@@ -362,46 +362,46 @@
         </section>
         <section class="section order">
           <div class="container">
-            <div class="section__title">Закажите доставку</div>
+            <div class="section__title" id="order-form">Закажите доставку</div>
             <div class="order__form">
-              <form class="order__form-tag" id="order-form" action="submit_form.php" method="POST">
+              <form class="order__form-tag" action="submit_form.php" method="POST">
                 <div class="order__form-col">
                   <div class="order__form-row order__form-row_double">
                     <label class="order__form-block">
                       <div class="order__form-label">Имя</div>
-                      <input class="order__form-input" name="name" type="text" placeholder="">
+                      <input class="order__form-input" name="name" type="text" placeholder="" maxlength="60" required>
                     </label>
                     <label class="order__form-block">
                       <div class="order__form-label">Телефон</div>
-                      <input class="order__form-input phone-mask" name="phone" type="text" placeholder="">
+                      <input class="order__form-input phone-mask" name="phone" type="text" placeholder="" maxlength="20" required>
                     </label>
                   </div>
                   <div class="order__form-row order__form-row_double">
                     <label class="order__form-block">
                       <div class="order__form-label">email</div>
-                      <input class="order__form-input" name="email" type="email" placeholder="">
+                      <input class="order__form-input" name="email" type="email" placeholder="" maxlength="80" required>
                     </label>
                     <label class="order__form-block">
                       <div class="order__form-label">Улица</div>
-                      <input class="order__form-input" name="street" type="text" placeholder="">
+                      <input class="order__form-input" name="street" type="text" placeholder="" maxlength="30" required>
                     </label>
                   </div>
                   <div class="order__form-row order__form-row_quatro">
                     <label class="order__form-block">
                       <div class="order__form-label">Дом</div>
-                      <input class="order__form-input" name="home" type="text" placeholder="">
+                      <input class="order__form-input" name="home" type="text" placeholder="" maxlength="6" required>
                     </label>
                     <label class="order__form-block">
                       <div class="order__form-label">Корпус</div>
-                      <input class="order__form-input" name="part" type="text" placeholder="">
+                      <input class="order__form-input" name="part" type="text" placeholder="" maxlength="4">
                     </label>
                     <label class="order__form-block">
                       <div class="order__form-label">Квартира</div>
-                      <input class="order__form-input" name="appt" type="text" placeholder="">
+                      <input class="order__form-input" name="appt" type="text" placeholder="" maxlength="6">
                     </label>
                     <label class="order__form-block">
                       <div class="order__form-label">Этаж</div>
-                      <input class="order__form-input" name="floor" type="text" placeholder="">
+                      <input class="order__form-input" name="floor" type="text" placeholder="4" maxlength="3">
                     </label>
                   </div>
                 </div>
@@ -409,25 +409,25 @@
                   <div class="order__form-row">
                     <label class="order__form-block">
                       <div class="order__form-label">Комментарий</div>
-                      <textarea class="order__form-input order__form-input_textarea" name="comment"></textarea>
+                      <textarea class="order__form-input order__form-input_textarea" name="comment" maxlength="500"></textarea>
                     </label>
                   </div>
                   <div class="order__form-buttons">
                     <div class="order__form-row">
                       <label class="order__radio">
-                        <input class="order__radio-elem" name="payment" type="radio">
+                        <input class="order__radio-elem" name="payment" type="radio" value="1">
                         <div class="order__radio-fake"></div>
                         <div class="order__radio-title">Потребуется сдача</div>
                       </label>
                       <label class="order__radio">
-                        <input class="order__radio-elem" name="payment" type="radio">
+                        <input class="order__radio-elem" name="payment" type="radio" value="0">
                         <div class="order__radio-fake"></div>
                         <div class="order__radio-title">Оплата по карте</div>
                       </label>
                     </div>
                     <div class="order__form-row">
                       <label class="order__radio order__radio_checkbox">
-                        <input class="order__radio-elem" name="callback" type="checkbox">
+                        <input class="order__radio-elem" name="callback" type="checkbox" value="1">
                         <div class="order__radio-fake"></div>
                         <div class="order__radio-title">Не перезванивать</div>
                       </label>

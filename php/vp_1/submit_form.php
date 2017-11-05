@@ -8,10 +8,52 @@
 require_once('./db_data.php');
 $name = htmlspecialchars($_POST["name"]);
 $email = htmlspecialchars($_POST["email"]);
+$phone = htmlspecialchars($_POST["phone"]);
+$street = htmlspecialchars($_POST["street"]);
+$house = htmlspecialchars($_POST["home"]);
+$house_block = htmlspecialchars($_POST["part"]);
+$apt = htmlspecialchars($_POST["appt"]);
+$floor = htmlspecialchars($_POST["floor"]);
+$comment = htmlspecialchars($_POST["comment"]);
+$need_cashback = htmlspecialchars($_POST["payment"]);
+$need_callback = htmlspecialchars($_POST["callback"]);
+
 try {
     $DBH = new PDO("mysql:host=$host;dbname=$db_name", $user, $pass);
     $DBH->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-    $DBH->prepare('SELECT * FROM catalog')->execute();
+    $prepareQuery = $DBH->prepare("SELECT id, user_email FROM users_login WHERE user_email = :email");
+    $prepareQuery->bindParam(':email', $email);
+    if ($prepareQuery->execute()) {
+        $result = $prepareQuery->fetchAll();
+        $customer_data = array(
+            'phone' => $phone,
+            'street' => $street,
+            'house' => $house,
+            'house_block' => $house_block,
+            'apt' => $apt,
+            'floor' => $floor,
+            'comment' => $comment,
+            'need_cashback' => $need_cashback,
+            'need_callback' => $need_callback
+        );
+        $user_id = NULL;
+        if (empty($result)) {
+            $data = array(
+                'user_name' => $name,
+                'user_email' => $email
+            );
+            $userRegister = $DBH->prepare("INSERT INTO users_login (user_name, user_email)
+                VALUE (:user_name, :user_email)");
+            $userRegister->execute($data);
+            $user_id = $DBH->lastInsertId();
+        } else {
+            $user_id = $result[0]['id'];
+        }
+        $addCustomerInfo = $DBH->prepare("INSERT INTO customer_data (user_id, tel, street,
+            house, house_block, apt, floor, comments, need_cashback, need_callback) VALUE (
+            $user_id, :phone, :street, :house, :house_block, :apt, :floor, :comment, :need_cashback, :need_callback)");
+        $addCustomerInfo->execute($customer_data);
+    }
 } catch (PDOException $e) {
     file_put_contents('./log/PDOErrors.txt',$e->getMessage(),FILE_APPEND);
 }
