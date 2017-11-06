@@ -52,12 +52,26 @@ try {
         $addCustomerInfo = $DBH->prepare("INSERT INTO customer_data (user_id, tel, street,
             house, house_block, apt, floor, comments, need_cashback, need_callback) VALUE (
             $user_id, :phone, :street, :house, :house_block, :apt, :floor, :comment, :need_cashback, :need_callback)");
-        $addCustomerInfo->execute($customer_data);
+        if ($addCustomerInfo->execute($customer_data)) {
+            $getOrderQuantity = $DBH->query("SELECT COUNT(user_id) AS quantity 
+                FROM customer_data 
+                WHERE user_id=$user_id;")->fetchAll();
+            $quantityOrders = $getOrderQuantity[0]['quantity'];
+            $title = 'Заказ бургера.';
+            if ($quantityOrders == 1) {
+                $orderInMessage = "Спасибо, это ваш первый заказ!";
+            } else {
+                $orderInMessage = "Спасибо! Это уже $quantityOrders заказ.";
+            }
+            $message = "Ваш заказ будет доставлен по адресу: ул. $street, $house_block, $apt. ".
+                "Заказ: DarkBeefBurger за 500 рублей, 1 шт. ".$orderInMessage;
+            $message = wordwrap($message, 70, "\r\n");
+            mail($email, $title, $message);
+        };
     }
 } catch (PDOException $e) {
     file_put_contents('./log/PDOErrors.txt',$e->getMessage(),FILE_APPEND);
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -85,7 +99,7 @@ try {
                         }
                         if ($name != '') echo "<p>Здравствуйте, $name</p>";
                         if ($email != '') echo "<p>Спасибо за заказ. Вся информация была выслана вам на эл. почту,".
-                            " по адресу $email</p>";
+                            " по адресу <b>$email</b></p>";
 
                     ?>
                 </div>

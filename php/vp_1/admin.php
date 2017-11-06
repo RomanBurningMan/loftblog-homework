@@ -44,8 +44,6 @@ try {
                             <tr>
                                 <th>№</th><th>Имя</th><th>Почта</th><th>Колличество заказов</th>
                             </tr>";
-//                       echo "<pre>";
-//                       print_r($result);
                        foreach ($result as $value) {
                            echo "<tr><td>".$value['id']."</td>";
                            echo "<td>".$value['user_name']."</td>";
