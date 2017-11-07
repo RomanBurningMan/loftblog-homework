@@ -1,0 +1,13 @@
+UPDATE test1.users_login SET user_name = 'Roman', user_email = 'r.r@r.com' WHERE id = 5;
+UPDATE test1.users_login SET user_name = 'Roman', user_email = 'r.r@rr.com11' WHERE id = 6;
+UPDATE test1.users_login SET user_name = 'Roman', user_email = 'r.r@rr.com111' WHERE id = 7;
+UPDATE test1.users_login SET user_name = 'Roman', user_email = 'r.r@rr.com1111' WHERE id = 8;
+UPDATE test1.users_login SET user_name = 'Roman', user_email = 'r.r@rr.com11111' WHERE id = 9;
+UPDATE test1.users_login SET user_name = 'Roman', user_email = '111r.r@rr.com11111' WHERE id = 10;
+UPDATE test1.users_login SET user_name = 'Roman New', user_email = '111r.r@rr.bl' WHERE id = 11;
+UPDATE test1.users_login SET user_name = 'Roman New', user_email = '111r.r@rr.bld' WHERE id = 12;
+UPDATE test1.users_login SET user_name = 'Hiall', user_email = 'r.r@rr.com' WHERE id = 13;
+UPDATE test1.users_login SET user_name = 'Rom', user_email = 'roman@roman.com' WHERE id = 14;
+UPDATE test1.users_login SET user_name = 'Lenon', user_email = 'iwantburder@gmail.com' WHERE id = 15;
+UPDATE test1.users_login SET user_name = 'Menda', user_email = 'iwantburder@gmail.com1' WHERE id = 16;
+UPDATE test1.users_login SET user_name = 'Menda', user_email = 'r.kushnir.ur@gmail.com' WHERE id = 17;
