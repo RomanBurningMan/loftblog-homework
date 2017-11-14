@@ -1,0 +1,3 @@
+2017-11-11 22:04 [Error] SQLSTATE[HY093]: Invalid parameter number: parameter was not defined
+2017-11-11 22:12 [Error] SQLSTATE[HY093]: Invalid parameter number: parameter was not defined
+2017-11-11 22:14 [Error] SQLSTATE[HY093]: Invalid parameter number: parameter was not defined

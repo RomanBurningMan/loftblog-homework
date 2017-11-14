@@ -1,0 +1,2 @@
+2017-11-11 20:39 Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'passsword' in 'field list'
+2017-11-11 20:40 [Error] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'passsword' in 'field list'

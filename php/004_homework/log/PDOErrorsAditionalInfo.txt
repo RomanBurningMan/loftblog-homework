@@ -1,0 +1,18 @@
+2017-11-13 22:58 [Error] SQLSTATE[HY093]: Invalid parameter number: parameter was not defined
+2017-11-13 23:00 [Error] SQLSTATE[HY093]: Invalid parameter number: parameter was not defined
+2017-11-13 23:02 [Error] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')
+                WHERE
+                  login = 'Roman92'' at line 4
+2017-11-14 23:04 [Error] SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+2017-11-15 00:21 [Error] SQLSTATE[HY000] [2002] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+
+2017-11-15 00:21 [Error] SQLSTATE[HY000] [2002] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+
+2017-11-15 00:25 [Error] SQLSTATE[HY000] [2002] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+
+2017-11-15 00:26 [Error] SQLSTATE[HY000] [2002] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+
+2017-11-15 00:29 [Error] SQLSTATE[HY000] [2002] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+
+2017-11-15 00:30 [Error] SQLSTATE[HY000] [2002] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+
