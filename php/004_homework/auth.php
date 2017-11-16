@@ -30,7 +30,7 @@ if ($auth) {
     session_start();
     $_SESSION['auth'] = 1;
     $_SESSION['login'] = $login;
-    header("Location: ".$_SERVER['HTTP_REFERER']."userdata.php");
+    header("Location: ./userdata.php");
 } else {
     echo "<p>Ошибка в авторизации.</p>";
 }

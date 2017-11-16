@@ -55,7 +55,7 @@ if ($_SESSION['auth'] == 1) {
             file_put_contents('./log/PDOErrorsAditionalInfo.txt',date('Y-m-d H:i').' [Error] '.$e->getMessage()."\r\n",FILE_APPEND);
         }
     } else {
-        echo "<h2>Ошибка: Заполните все поля формы.</h2>";
+        echo "<h2>Заполните все поля формы.</h2>";
     }
     unset($_POST['username']);
     unset($_POST['birthday']);
@@ -118,12 +118,12 @@ function fileSizeCount($size) {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Project name</a>
+            <a class="navbar-brand" href="./">Project name</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="list.html">Список пользователей</a></li>
-                <li><a href="filelist.html">Список файлов</a></li>
+                <li><a href="list.php">Список пользователей</a></li>
+                <li><a href="filelist.php">Список файлов</a></li>
                 <li class="active"><a href="userdata.php">Данные пользователя</a></li>
             </ul>
         </div><!--/.nav-collapse -->
