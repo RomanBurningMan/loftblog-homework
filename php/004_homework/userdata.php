@@ -8,14 +8,29 @@
 session_start();
 if ($_SESSION['auth'] == 1) {
     require_once "./db.php";
-    $uploadFile = $_FILES['photo'];
-    $userDataArr = array(
-        'username' => strip_tags($_POST['username']),
-        'birthday' => strip_tags($_POST['birthday']),
-        'selfinfo' => strip_tags($_POST['selfinfo']),
-        'filepath' => './upload/'.$uploadFile['name'],
-        'login' => $_SESSION['login']
-    );
+    try
+    {
+        $uploadFile = $_FILES['photo'];
+        $userDataArr = array(
+            'username' => strip_tags($_POST['username']),
+            'birthday' => strip_tags($_POST['birthday']),
+            'selfinfo' => strip_tags($_POST['selfinfo']),
+            'filepath' => './upload/'.$uploadFile['name'],
+            'login' => $_SESSION['login']
+        );
+        foreach ($userDataArr as $value)
+        {
+            if (empty($value))
+            {
+                throw new \Exception("Заполните все поля формы.");
+            }
+        }
+    }
+    catch (Exception $e)
+    {
+        die("<h2>".$e->getMessage()."</h2>".
+            "<a href='".$_SERVER['HTTP_REFERER']."'>< Вернуться назад</a>");
+    }
     if (!empty($userDataArr['username']) && !empty($userDataArr['birthday'])
         && !empty($userDataArr['selfinfo'] && !empty($uploadFile))) {
         $fileExtension = strtolower(pathinfo($uploadFile['name'],PATHINFO_EXTENSION));

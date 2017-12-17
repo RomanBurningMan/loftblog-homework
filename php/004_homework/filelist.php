@@ -2,8 +2,22 @@
 session_start();
 if ($_SESSION['auth'] == 1) {
     require_once "./db.php";
-    $idForDelete = (int) $_GET['deletePhoto'];
+    try
+    {
+        $idForDelete = (int) $_GET['deletePhoto'];
 
+        if (empty($idForDelete))
+        {
+            throw new Exception('id для удаление не определено.');
+        }
+    }
+    catch (Exception $e)
+    {
+        echo "<pre>";
+        print_r($e->getMessage());
+        echo "</pre>";
+        $idForDelete = NULL;
+    }
     try {
         $DBH = new PDO("mysql:host=$host;dbname=$db_name", $user, $pass);
         $DBH->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );

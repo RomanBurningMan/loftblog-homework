@@ -2,7 +2,20 @@
 session_start();
 if ($_SESSION['auth'] == 1) {
     require_once "./db.php";
-    $idForDelete = (int) $_GET['deleteUser'];
+
+    try
+    {
+        $idForDelete = (int) $_GET['deleteUser'];
+
+        if (empty($idForDelete))
+        {
+            throw new Exception('id для удаление не определено.');
+        }
+    }
+    catch (Exception $e)
+    {
+        $idForDelete = NULL;
+    }
 
     try {
         $DBH = new PDO("mysql:host=$host;dbname=$db_name", $user, $pass);
